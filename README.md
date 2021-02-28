@@ -20,40 +20,15 @@ Since there is no analytical solution to compare with, we decided to split the h
 
 ## Results:
 Here, we evaluate the MFGP performance by having a dataset consisting of 29 low-fidelity and 22 high-fidelity observations. The following figure shows all these observations together. It can be seen that the required nested structure is satisfied. In other words, for any data point in the high-fidelity level, there is a corresponding point in the low-fidelity level. <br>
+
 <img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/observations.png"> <br>
-Fig. \ref{predictions} illustrates the predictions on the distance of the drop equilibrium position from the channel center over the range of 0 to 1 for the frequency and 0.09 to 1.67 for the Capillary number. The algorithm is trained over the entire data. A few sanity checks have been done to ensure that these results make sense. First, Fig. \ref{surface} denotes that at any fixed value of the Capillary number, there is an optimum frequency for which the distance from the center (the $z$ axis) is an extremum. This is also previously observed in the simulations for the input values in the dataset. Secondly, the predictions made by the high response are slightly higher than those of the lower response, which is also compatible with the simulations outcomes. Lastly, we know from the underlying physics that in the steady flow (at a frequency of 0), the distance decreases by increasing the Capillary number. This can be seen in both contour plots of the mean low and high responses (figures \ref{low} and \ref{high}) as well as being confirmed quantitatively in the code. Fig. \ref{variance} illustrates a relatively low variance for the high-fidelity response, being our main goal, in the entire domain. The red-colored region in this plot corresponds to places where the density of data points is less, and hence, the predicted outputs have more uncertainty. 
-\begin{figure}
-\centering
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{surface_plot.png}
-  \caption{}
-  \label{surface}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{mean_low_response.png}
-  \caption{}
-  \label{low}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{mean_high_response.png}
-  \caption{}
-  \label{high}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{variance_high_fidelity.png}
-  \caption{}
-  \label{variance}
-  \end{subfigure}
-   \caption{Prediction of the MFGP algorithm by illustrating the (a) surface plot of the high response colored by red and low response colored by green, (b) mean of the low response, (c) mean of the high response, and (d) variance of the high response}
-     \label{predictions}
-\end{figure}
+
+The following figures illustrate the predictions on the distance of the drop equilibrium position from the channel center over the range of 0 to 1 for the frequency and 0.09 to 1.67 for the Capillary number. The algorithm is trained over the entire data. A few sanity checks have been done to ensure that these results make sense. First, the first figure denotes that at any fixed value of the Capillary number, there is an optimum frequency for which the distance from the center (the z axis) is an extremum. This is also previously observed in the simulations for the input values in the dataset. Secondly, the predictions made by the high response are slightly higher than those of the lower response, which is also compatible with the simulations outcomes. Lastly, we know from the underlying physics that in the steady flow (at a frequency of 0), the distance decreases by increasing the Capillary number. This can be seen in both contour plots of the mean low and high responses (second and third figures) as well as being confirmed quantitatively in the code. The last figure illustrates a relatively low variance for the high-fidelity response, being our main goal, in the entire domain. The red-colored region in this plot corresponds to places where the density of data points is less, and hence, the predicted outputs have more uncertainty. <br>
+
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/surface_plot.png"> <br>
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/mean_low_response.png"> <br>
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/mean_high_response.png"> <br>
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/variance_high_fidelity.png"> <br>
 
 Since there is no analytical solution to compare with, we decided to split the high fidelity data into training and test set in this section. This helps us evaluate the performance of the implemented MFGP. We assign 15 training and 6 test points randomly, and train the MFGP on the whole low-fidelity inputs and only the training high-fidelity inputs, and evaluate the responses on the high-fidelity test points. We do this 100 times to eliminate the dependence of the results on the location of the test inputs. This especially helps examine the performance at the regions with less amount of data. The successful reproducibility of these results is also checked. After this bootstrapping, the average of the mean squared error (MSE) was 0.00011 and the average of the $R^2$ score was 0.9858. Fig. \ref{test performance} shows this evaluation at the last test set. Fig. \ref{pred and obs} expresses the predictions along with their 95\% intervals, and denotes that the observed data lie within these shaded error bands. Having more data would help get an standardized error obeying a closer distribution to normal according to Fig. \ref{std error}.
 \begin{figure}
