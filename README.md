@@ -30,42 +30,11 @@ The following figures illustrate the predictions on the distance of the drop equ
 <img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/mean_high_response.png"> <br>
 <img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/variance_high_fidelity.png"> <br>
 
-Since there is no analytical solution to compare with, we decided to split the high fidelity data into training and test set in this section. This helps us evaluate the performance of the implemented MFGP. We assign 15 training and 6 test points randomly, and train the MFGP on the whole low-fidelity inputs and only the training high-fidelity inputs, and evaluate the responses on the high-fidelity test points. We do this 100 times to eliminate the dependence of the results on the location of the test inputs. This especially helps examine the performance at the regions with less amount of data. The successful reproducibility of these results is also checked. After this bootstrapping, the average of the mean squared error (MSE) was 0.00011 and the average of the $R^2$ score was 0.9858. Fig. \ref{test performance} shows this evaluation at the last test set. Fig. \ref{pred and obs} expresses the predictions along with their 95\% intervals, and denotes that the observed data lie within these shaded error bands. Having more data would help get an standardized error obeying a closer distribution to normal according to Fig. \ref{std error}.
-\begin{figure}
-\centering
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{prediction_and_observations.png}
-  \caption{}
-  \label{pred and obs}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{prediction_vs_observations.png}
-  \caption{}
-  \label{pred vs obs}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{correlations.png}
-  \caption{}
-  \label{correlations}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[h!]{.485\textwidth}
-  \centering
-  \includegraphics[height=.24\textheight]{std_error.png}
-  \caption{}
-  \label{std error}
-  \end{subfigure}
-   \caption{Evaluation of the MFGP performance on a random test set by illustrating the (a) observations and predictions with their uncertainties, (b) predictions versus observations, (c) exact versus predicted correlations, and (d) the standardized error}
-     \label{test performance}
-\end{figure}
+Since there is no analytical solution to compare with, we decided to split the high fidelity data into training and test set in this section. This helps us evaluate the performance of the implemented MFGP. We assign 15 training and 7 test points randomly, and train the MFGP on the whole low-fidelity inputs and only the training high-fidelity inputs, and evaluate the responses on the high-fidelity test points. We do this 500 times to eliminate the dependence of results on the choice of test points. This especially helps examine the performance at the regions with less amount of data. The successful reproducibility of these results is also checked. After this bootstrapping, the average of the mean squared error (MSE) was 0.00015 and the average of the R^2 score was 0.9858. Figures below show this evaluation at the last test set. First figure expresses the predictions along with their 95% intervals, and denotes that the observed data lie within these shaded error bands. In this figure, the x axis label (i) denotes the index of each test point. Second figure visualizes the true or known value of d* versus its predicted value at each test point. This figure illustrates the strength of the model as the plotted points are very close to the line of y=x, which is an indication of the agreement between predictions and observations. The exact and predicted correlations between the high and low responses of d* are also very close to each other according to last figure. All of these are evidence for the strong and successful performance of the implemented MFGP algorithm
 
-
-
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/prediction_and_observations.png"> <br>
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/prediction_vs_observations.png"> <br>
+<img src="https://github.com/alilafzi/Multi_Fidelity_Gaussian_Processes/blob/main/images/corelations.png"> <br>
 ## Conclusions:
 Determination of the particles' equilibrium positions in the microchannels is extremely crucial as it can help in a variety of microfluidics applications. This importance as well as the need to overcome the issue of designing impractically long channels led us to do some simulations to capture the dynamics of a single droplet suspended in an oscillatory flow within the channel. Due to the significant cost of these simulations, a recursive version of the Multi Fidelity Gaussian processes has been used to replace the numerous high-fidelity simulations that cannot be afforded numerically. The MFGP algorithm is used to predict the equilibrium distance of the drop from the channel center for a given range of the interplaying input parameters, namely the Capillary number and frequency, assuming a constant Reynolds number. In addition, its performance was evaluated by randomly shuffling the high-fidelity data 500 times and assigning around 30% of it as the test set for an accurate quantitative comparison each time. 
 
