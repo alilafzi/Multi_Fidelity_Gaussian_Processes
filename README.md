@@ -41,3 +41,7 @@ Determination of the particles' equilibrium positions in the microchannels is ex
 ## Reference:
 The original code can be found at: <br>
 https://github.com/paraklas/NARGP
+
+## Paper Link:
+The full manuscript is available at: <br>
+https://arxiv.org/abs/2103.11303
