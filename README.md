@@ -43,5 +43,5 @@ The original code can be found at: <br>
 https://github.com/paraklas/NARGP
 
 ## Paper Link:
-The full manuscript is available at: <br>
-https://arxiv.org/abs/2103.11303
+The full published manuscript is available at: <br>
+https://aip.scitation.org/doi/10.1063/5.0056019
